@@ -1,57 +1,206 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: sans-serif;
 }
-  
+p{
+  font-size: 20px;
+}
 body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-     min-height: 100vh;
-    background-color: #538790;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #28475c;
+}
+.wrapper{
+  padding: 40px;
+  background:  #2f8886;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.cards, .card, .view, .details, p{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cards{
+  height: 350px;
+  width: 350px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cards .card{
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+  height: calc(100% / 4 - 10px);
+  width: calc(100% / 4 - 10px);
 }
 
-.wrapper{
-    padding: 25px;
-    background: #eaf6f6;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.card.shake{
+    animation: shake 0.35s ease-in-out;
   }
-/* this is the outer box that wraps all the cards */
-.cards, .card, .view, .details, p{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @keyframes shake {
+    0%, 100%{
+      transform: translateX(0);
+    }
+    20%{
+      transform: translateX(-13px);
+    }
+    40%{
+      transform: translateX(13px);
+    }
+    60%{
+      transform: translateX(-8px);
+    }
+    80%{
+      transform: translateX(8px);
+    }
   }
+
+/* front and back "cards" */
+.cards .card .view{
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  background: #c4eada;
+  border-radius: 7px;
+  backface-visibility: hidden;
+  transition: transform 0.10s linear;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.card .front-view img{
+  max-width: 20px;
+}
+.card .back-view{
+  transform: rotateY(-180deg);
+}
+.card .back-view img{
+  max-width: 60px;
+}
+.card.flip .front-view{
+  transform: rotateY(180deg);
+}
+.card.flip .back-view{
+  transform: rotateY(0);
+}
+
+.details{
+  width: 100%;
+  margin-top: 15px;
+  padding: 0 20px;
+  border-radius: 7px;
+  background: #84c69b;
+  height: calc(100% / 4 - 30px);
+  justify-content: space-between;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* styling of the time and no. of flips area */
+.details p{
+  font-size: 20px;
+  height: 17px;
+  padding-right: 18px;
+  border-right: 4px solid  #fcf3ca;
+  }
+
+.details p span{
+  margin-left: 8px;
+}
+.details p b{
+  font-weight: 500;
+}
+
+/* styling for the refresh button */
+.details button{
+  cursor: pointer;
+  font-size: 14px;
+  color: #e6f18c;
+  border-radius: 15px;
+  padding: 4px 11px;
+  background: #72b37e;
+  border: 2px solid  #437975;
+  transition: 0.3s ease;
+}
+/* change of color of the button when its hovered */
+.details button:hover{
+  color: #72b37e;
+  background: #437975;
+}
+
+/* for medium screens */
+@media screen and (max-width: 700px) {
   .cards{
     height: 350px;
     width: 350px;
-    flex-wrap: wrap;
-    justify-content: space-between;
   }
-  .cards .card{
-    cursor: pointer;
-    position: relative;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    height: calc(100% / 4 - 10px);
-    width: calc(100% / 4 - 10px);
+  .card .front-view img{
+    max-width: 16px;
   }
-  .card.shake{
-    animation: shake 0.35s ease-in-out;
+  .card .back-view img{
+    max-width: 40px;
   }
-/* moving along the "cards" in order to make the grid */
-
-
-/* size of the "cards" */
-.card .front-view img{
-    max-width: 17px;
 }
-/* the question mark */
-.card .back-view img{
-    max-width: 45px;
+
+/* for small screens */
+@media screen and (max-width: 530px) { 
+  .cards{
+    height: 300px;
+    width: 300px;
+  }
+  .card .back-view img{
+    max-width: 35px;
+  }
+  .details{
+    margin-top: 10px;
+    padding: 0 15px;
+    height: calc(100% / 4 - 20px);
+  }
+  .details p{
+    height: 15px;
+    font-size: 17px;
+    padding-right: 13px;
+  }
+  .details button{
+    font-size: 13px;
+    padding: 5px 10px;
+    border: none;
+    color: #709053;
+    background: #fff4c9;
+  }
 }
-/* what the actual image is */
+.winning {
+    display: none;
+    text-align: center;
+    text-transform: uppercase;
+    background-image: linear-gradient(
+    -225deg,
+    #155263 0%,
+    #ff6f3c 29%,
+    #ff9a3c 67%,
+    #ffc93c 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 50% auto;
+  color:#53a8b6 ;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: 
+  transparent;
+    animation: textclip 2s linear 
+infinite;
+  display: inline-block;
+      font-size: 20px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 100% center;
+  }
+}
