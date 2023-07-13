@@ -7,7 +7,7 @@ refreshBtn = document.querySelector(".details button");
 
 
 // cached elements
-let maxTime = 30;
+let maxTime = 40;
 let timeLeft = maxTime;
 let flips = 0; 
 let matchedCard = 0;
@@ -19,10 +19,12 @@ let cardOne, cardTwo, timer;
 // functions
 function initTimer() {
     if(timeLeft <= 0) {
-        return clearInterval(timer);
+    clearInterval(timer);
+    timeLeft=0;
+    showLostMessage();
     }
-    timeLeft--;
     timeTag.innerText = timeLeft;
+    timeLeft--;
 }
 
 function flipCard({target: clickedCard}) {
@@ -46,31 +48,43 @@ function flipCard({target: clickedCard}) {
 }
 
 function matchCards(img1, img2) {
-    if(img1 === img2) {
-        matchedCard++; //keeps incrementing the count of matched cards until the next condition, either 6 images matched or time ran out
-        if(matchedCard == 6 && timeLeft > 0) {
-            clearInterval(timer);
-            gameOver = true;
-            showWinMessage()
-        }
-        cardOne.removeEventListener("click", flipCard); //guard preventing further clicks if any of the last conditions were met.
-        cardTwo.removeEventListener("click", flipCard);
-        cardOne = cardTwo = "";
-        return disableDeck = false;
+    if (img1 === img2) {
+      matchedCard++;
+      //keeps incrementing the count of matched cards until the next condition,
+      // either 6 images matched or time ran out
+      if (matchedCard === 6 && timeLeft > 0) {
+        clearInterval(timer);
+        gameOver = true;
+        showWinMessage();
+      }
+//guard preventing further clicks if any of the last conditions were met.
+      cardOne.removeEventListener("click", flipCard);
+      cardTwo.removeEventListener("click", flipCard);
+      cardOne = cardTwo = "";
+      return disableDeck = false;
     }
-
-    setTimeout(() => { //function for the shake animation
-        cardOne.classList.add("shake");
-        cardTwo.classList.add("shake");
-    });
-
+  //function for the shake animation
     setTimeout(() => {
-        cardOne.classList.remove("shake", "flip"); //if the card was not a match, removes the shake and flip class in order to be able to keep playing
-        cardTwo.classList.remove("shake", "flip");
-        cardOne = cardTwo = "";
-        disableDeck = false;
+      cardOne.classList.add("shake");
+      cardTwo.classList.add("shake");
+    }, 500);
+  
+    setTimeout(() => {
+        //if the card was not a match, removes the shake and flip class 
+        //in order to be able to keep playing
+      cardOne.classList.remove("shake", "flip");
+      cardTwo.classList.remove("shake", "flip");
+      cardOne = cardTwo = "";
+      disableDeck = false;
+      
+      if (matchedCard !== 6 && timeLeft < 0) {
+        showLostMessage();
+      }
     }, 1200);
-}
+    // time to wait until the "shake" function happens 
+    //after flipping to wrong cards
+  }
+
 
 function shuffleCard() { //preparing for a new game
     timeLeft = maxTime;
@@ -117,13 +131,26 @@ cards.forEach(card => {
 
 function showWinMessage() {
     let winMessage = document.querySelector(".winning");
-    winMessage.textContent = "You win!";
+    winMessage.textContent = "You WIN!!!";
     winMessage.style.display = "block";
   }
 // shows the message "you win" when the if statament of 6 cards matched is done
 //and game is over, there is an div element on the html for this matter
 
+
+
   function hideWinMessage() {
+    let winMessage = document.querySelector(".winning");
+    winMessage.style.display = "none";
+  }
+
+  function showLostMessage() {
+    let winMessage = document.querySelector(".winning");
+    winMessage.textContent = "You LOOOOST! Try again?";
+    winMessage.style.display = "block";
+  }
+
+  function hideLostMessage() {
     let winMessage = document.querySelector(".winning");
     winMessage.style.display = "none";
   }

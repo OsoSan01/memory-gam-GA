@@ -5,11 +5,64 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+.wrap {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.text {
+  font-size: 10vh;
+  line-height: .8;
+  color: #e6f18c;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.wrap .text:nth-child(2),
+.wrap .text:nth-child(3),
+.crack {
+  position:absolute;
+  left: 0;
+  top: 0;
+}
+.wrap .text:nth-child(1) {
+  clip-path: polygon(100% 0, 3% 0, 100% 97%);
+  transition: transform .6s;
+}
+.wrap .text:nth-child(2) {
+  clip-path: polygon(0 3%, 0% 100%, 97% 100%);
+}
+.wrap .text:nth-child(3) {
+  opacity: 1;
+  transition: opacity .1s .6s;
+}
+.crack {
+  background-color: #ff6f3c;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0%, 0% 0, 0% 0%, 97% 100%);
+  transform: translate(-100%, -100%);
+  transition: transform .3s;
+}
+.wrap:hover .crack{
+  transform: translate(0, 0);
+}
+.wrap:hover .text:nth-child(3) {
+  opacity: 0;
+  transition: opacity .1s .3s;
+}
+.wrap:hover .text:nth-child(1) {
+  transition: transform .6s .5s;
+  transform: translate(10%, 10%);
+}
+
+
 p{
   font-size: 20px;
 }
 body{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -19,7 +72,7 @@ body{
   padding: 40px;
   background:  #2f8886;
   border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 1mm 1px 1px 1px grey;
 }
 .cards, .card, .view, .details, p{
   display: flex;
@@ -72,7 +125,6 @@ body{
   border-radius: 7px;
   backface-visibility: hidden;
   transition: transform 0.10s linear;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 .card .front-view img{
   max-width: 20px;
@@ -98,7 +150,7 @@ body{
   background: #84c69b;
   height: calc(100% / 4 - 30px);
   justify-content: space-between;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  box-shadow: 1mm 1px 1px 1px #4b788f;;
 }
 
 /* styling of the time and no. of flips area */
@@ -107,10 +159,12 @@ body{
   height: 17px;
   padding-right: 18px;
   border-right: 4px solid  #fcf3ca;
+
   }
 
 .details p span{
   margin-left: 8px;
+  box-shadow: .5mm 1px 1px 1px #4b788f;
 }
 .details p b{
   font-weight: 500;
@@ -126,6 +180,7 @@ body{
   background: #72b37e;
   border: 2px solid  #437975;
   transition: 0.3s ease;
+  box-shadow: .5mm 1px 1px 1px #4b788f;
 }
 /* change of color of the button when its hovered */
 .details button:hover{
@@ -176,6 +231,7 @@ body{
 }
 .winning {
     display: none;
+    margin: 20px;
     text-align: center;
     text-transform: uppercase;
     background-image: linear-gradient(
