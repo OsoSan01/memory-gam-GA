@@ -143,10 +143,11 @@ function showWinMessage() {
     let winMessage = document.querySelector(".winning");
     winMessage.style.display = "none";
   }
+//hides the winning message after clicking the refresh button
 
   function showLostMessage() {
     let winMessage = document.querySelector(".winning");
-    winMessage.textContent = "You LOOOOST! Try again?";
+    winMessage.textContent = "You LOST! Try again?";
     winMessage.style.display = "block";
   }
 
