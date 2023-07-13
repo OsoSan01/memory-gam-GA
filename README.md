@@ -1,14 +1,14 @@
-#Memory game first project
+# Memory game first project
 
-#Try my game
+# Try my game
 [Memory game](https://ososan01.github.io/memory-gam-GA/)
 
-##Goals
+## Goals
 	-Having an MVP by the end of the week.
 	-Relate and use all the material given to us on the last two weeks.
 
 
-#Intro
+# Intro
 As part of the boot camp journey we were asked to do a project on our own, having a whole week to do so.
 
 I must say that the idea of flying solo was scary. I was not 100% confident doing a project with a final MVP (minimal viable product) only after two weeks of classes. However, once I started, things got a little easier, numeros subjects revised in previous weeks started to click. 
@@ -18,7 +18,7 @@ From the variety of options, I chose the game “Checkers”. As time progressed
 Didn’t want to be hitting a wall or a dead end. In order to avoid that, I decided to change to a different game (that and my wife told me she wanted that kind of game). That’s how I ended with memory.
 
 
-#How it works and what I used.
+# How it works and what I used.
 
 ## General idea and pseudo code
 
@@ -46,7 +46,7 @@ After researching for a couple of days and watching some videos on how to, the g
 
 
 
-##Used tools.
+## Used tools.
 
 For the project, I used HTML, CSS and JS.
 
@@ -78,8 +78,8 @@ I’m still not 100% confident (by any means) in my expertise in JS. However, I 
 The final touches were some animations done over CSS.
 
 
-#Conclusion. 
-##What I liked, what I hated.
+# Conclusion. 
+## What I liked, what I hated.
 
 I am happy with the result. Overall, I think both goals got achieved during the week.
 
@@ -93,4 +93,4 @@ The final product and the fact that I pulled off succesfully.
 Having the chance to practice what I have been learning over the last weeks.
 
 
-#Thanks
+# Thanks
